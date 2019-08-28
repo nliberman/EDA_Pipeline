@@ -3,39 +3,39 @@ Exploratory Data Analysis
 
 State the goal:
   What is the question you are seeking to answer?
-  Define metrics of success: accuracy score, precision, etc.
+  Define metrics of success: mse, accuracy score, precision, etc.
 
 
 Explore Data:
   Look at the columns and missing values by column
-    df.isnull().sum()
+  	df.isnull().sum()
   Check data types
   View the values for all discrete columns by doing a value count
- 	  have any labels been miscoded?
+ 	have any labels been miscoded?
+  Put all column names into appropriate list
+   	Discrete Not Dummied, Discrete Dummied, Continuous, Date
 
 
 Take Action:
   Handle Missing Values
-    drop missing values or impute values
+  	drop missing values or impute values
   Change Data Types if applicable
   Can new features be engineered out of the given data?
-  Put all column names into appropriate list
-    Discrete Not Dummied, Discrete Dummied, Continuous, Date
   Does a continuous column need to be binned?
-	  pd.cut()
-  Convert discrete values to dummies and concat to original dataframe
+  	pd.cut()
+  Convert discrete values to dummies
     for col in discrete:
       df = pd.concat([df, pd.get_dummies(df[col], prefix=col, prefix_sep="_")], axis='columns')
 
 
 Check for data correctness:
-	Are all units in each column within the correct range?
+    Are all units in each column within the correct range?
   	ie, past data can’t have dates from the future
-		look at min and max value of each column to see if the extremes max sense
+	look at min and max value of each column to see if the extremes max sense
     
     
 Check correlation between continuous columns (dont include target)
-	  for collinearlity, if pairwise correlation is greater than 0.9, drop one column
+	for collinearlity, if pairwise correlation is greater than 0.9, drop one column
   	for multicollinearity, if VIF is greater than 10, drop that column
   
 
@@ -44,9 +44,10 @@ Make histograms, box plots, density plots, scatter plots
 
 
 Normalize / Standardize data
+    consider chopping off top and bottom 1% of value when calculating the standard deviation
 Check for outliers
-  if standardizing, shrink any values with a standard deviation above 3 or below -3
-  cap the values between -4 and 4
+    if standardizing, shrink any values with a standard deviation above 3 or below -3
+    cap the values between -4 and 4
 
 
 Feature Selection
